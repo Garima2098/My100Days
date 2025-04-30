@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Todo from './Component/Todo';
+import Heatmap from './Component/Heatmap';
 import './App.css';
 
 function App() {
+  const [view, setView] = useState('daily');
+  const [updateCount, setUpdateCount] = useState(0);
+
+  const handleViewChange = (newView) => {
+    setView(newView);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h2>100-Day Tracker</h2>
+      <div className="tabs">
+        <button onClick={() => handleViewChange('daily')}>Daily Tasks</button>
+        <button onClick={() => handleViewChange('heatmap')}>Heatmap</button>
+      </div>
+      {view === 'daily' ? (
+        <Todo onTaskChange={() => setUpdateCount((prev) => prev + 1)} />
+      ) : (
+        <Heatmap updateCount={updateCount} />
+      )}
     </div>
   );
 }
