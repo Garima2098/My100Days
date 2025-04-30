@@ -5,7 +5,8 @@ function Todo({ onTaskChange }) {
     'Workout',
     'No Sugar',
     'Mediation/Prayer/Scripture',
-    'Beetroot juice',
+    'Cold Shower',
+    'Beetroot juice/1spoon Ghee',
     'Journal',
     '4 Hour Study',
     '4 Am getup',
@@ -37,7 +38,7 @@ function Todo({ onTaskChange }) {
     const updatedData = { ...data, [todayKey]: Array.from(current) };
     setData(updatedData);
     localStorage.setItem('heatmapData', JSON.stringify(updatedData));
-    onTaskChange(); // Trigger heatmap update
+    onTaskChange();
   };
 
   return (

@@ -50,14 +50,19 @@ function Heatmap({ updateCount }) {
           const date = new Date(startDate);
           date.setDate(startDate.getDate() + i);
           const key = date.toISOString().split('T')[0];
-          const count = data[key]?.length || 0;
+          const completedTasks = data[key] || []; // get completed tasks for the date
+          const count = completedTasks.length;
 
           return (
             <div
               key={key}
               className="box"
-              title={`${key}: ${count} task(s) done`}
-              style={{ backgroundColor: getColor(count) }}
+              title={`${key}: ${count} task(s) done - ${completedTasks.join(
+                ', '
+              )}`}
+              style={{
+                backgroundColor: getColor(count),
+              }}
             ></div>
           );
         })}
